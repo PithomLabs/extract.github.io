@@ -1,0 +1,284 @@
+{{ $seed := delimit (shuffle (seq 1 9)) "" }}
+{{ $id := cond (isset .Params "id") (.Get "id") (substr (md5 $seed) 0 8) }}
+{{ $path := .Get "path" }}
+{{ $isRoot := cond (isset .Params "root") (.Get "root") false }}
+
+{{ $cdnEnabled := site.Params.cdn.enabled | default false }}
+{{ $cdnUrl := site.Params.cdn.url | default "" | strings.TrimSuffix "/" }}
+{{ $images := slice }}
+
+{{/* Derive gallery key from path (e.g., "images/magellan" -> "magellan") */}}
+{{ $galleryKey := path.Base $path }}
+
+{{/* Check for a data manifest: site.Data.slideshows.<galleryKey> */}}
+{{ $manifest := index site.Data.slideshows $galleryKey }}
+
+{{ if and $cdnEnabled $manifest }}
+  {{/* === S3/CDN MODE === */}}
+  {{ range $manifest }}
+    {{ $imgUrl := "" }}
+    {{ if or (eq $isRoot true) (eq $isRoot "true") }}
+      {{ $imgUrl = printf "%s/%s" $cdnUrl . }}
+    {{ else }}
+      {{ $imgUrl = printf "%s/%s/%s" $cdnUrl $galleryKey . }}
+    {{ end }}
+    {{ $images = $images | append (dict "Name" . "URL" $imgUrl) }}
+  {{ end }}
+{{ else }}
+  {{/* === LOCAL MODE (fallback) === */}}
+  {{ $localPath := print "static/" $path }}
+  {{ if fileExists $localPath }}
+    {{ $files := readDir $localPath }}
+    {{ range $files }}
+      {{ if or (strings.HasSuffix .Name ".jpg") (strings.HasSuffix .Name ".jpeg")
+              (strings.HasSuffix .Name ".png") (strings.HasSuffix .Name ".webp") }}
+        {{ $images = $images | append (dict "Name" .Name "URL" (printf "/%s/%s" $path .Name)) }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    {{ warnf "Slideshow path %q does not exist locally and no S3 manifest was found." $path }}
+  {{ end }}
+{{ end }}
+
+<div class="slideshow-container" id="slideshow-{{ $id }}">
+    <div class="slides-wrapper">
+        {{ range $index, $image := $images }}
+        <div class="slide">
+            <img src="{{ $image.URL }}" alt="{{ $image.Name }}" onclick="toggleFullscreen('{{ $id }}')">
+            <div class="caption">{{ $index | add 1 }} / {{ len $images }}</div>
+        </div>
+        {{ end }}
+    </div>
+
+    <a class="prev" onclick="moveSlide(-1, '{{ $id }}')">❮</a>
+    <a class="next" onclick="moveSlide(1, '{{ $id }}')">❯</a>
+    <button class="fullscreen-btn" onclick="toggleFullscreen('{{ $id }}')">⛶</button>
+
+    <div class="dots-container">
+        {{ range $index, $image := $images }}
+        <span class="dot" onclick="currentSlide({{ $index }}, '{{ $id }}')"></span>
+        {{ end }}
+    </div>
+</div>
+
+<style>
+    .slideshow-container {
+        position: relative;
+        max-width: 100%;
+        margin: auto;
+        overflow: hidden;
+        background: #000;
+    }
+
+    /* Fullscreen Mode */
+    .slideshow-container.fullscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .slideshow-container.fullscreen .slides-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide {
+        display: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .fade {
+        animation-name: fade;
+        animation-duration: 0.5s;
+    }
+
+    .slide img {
+        width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+    /* Adjust image in fullscreen */
+    .slideshow-container.fullscreen .slide img {
+        max-height: 100vh;
+        width: auto;
+        max-width: 100%;
+    }
+
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        /* Ensure above image */
+    }
+
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .fullscreen-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 4px;
+        z-index: 10001;
+    }
+
+    .fullscreen-btn:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .caption {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 40px;
+        /* Moved up slightly */
+        width: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .dots-container {
+        text-align: center;
+        padding: 10px;
+        background: #222;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+
+    .dot {
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .dot.active,
+    .dot:hover {
+        background-color: #717171;
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        if (!window.slideshowData) {
+            window.slideshowData = {};
+            window.activeSlideshow = null;
+        }
+
+        // Initialize this specific slideshow
+        window.slideshowData['{{ $id }}'] = 0;
+
+        if (typeof window.moveSlide === 'undefined') {
+            window.moveSlide = function (n, id) {
+                showSlides(window.slideshowData[id] += n, id);
+            }
+
+            window.currentSlide = function (n, id) {
+                showSlides(window.slideshowData[id] = n, id);
+            }
+
+            window.toggleFullscreen = function (id) {
+                const el = document.getElementById('slideshow-' + id);
+                if (el.classList.contains('fullscreen')) {
+                    el.classList.remove('fullscreen');
+                    window.activeSlideshow = null;
+                } else {
+                    el.classList.add('fullscreen');
+                    window.activeSlideshow = id;
+                }
+            }
+
+            window.showSlides = function (n, id) {
+                let slides = document.querySelectorAll(`#slideshow-${id} .slide`);
+                let dots = document.querySelector(`#slideshow-${id} .dots-container`).querySelectorAll('.dot');
+
+                if (n >= slides.length) { window.slideshowData[id] = 0 }
+                if (n < 0) { window.slideshowData[id] = slides.length - 1 }
+
+                // Update header index to keep track of correct current index
+                let current = window.slideshowData[id];
+
+                slides.forEach(slide => slide.style.display = "none");
+                dots.forEach(dot => dot.classList.remove("active"));
+
+                if (slides[current]) {
+                    slides[current].style.display = "block";
+                    slides[current].classList.add("fade");
+                }
+                if (dots[current]) {
+                    dots[current].classList.add("active");
+                }
+            }
+
+            // Global Keyboard Listener
+            document.addEventListener('keydown', function (e) {
+                if (!window.activeSlideshow) return;
+
+                if (e.key === "ArrowLeft") {
+                    window.moveSlide(-1, window.activeSlideshow);
+                } else if (e.key === "ArrowRight") {
+                    window.moveSlide(1, window.activeSlideshow);
+                } else if (e.key === "Escape") {
+                    window.toggleFullscreen(window.activeSlideshow);
+                }
+            });
+        }
+
+        // Initial show
+        setTimeout(() => {
+            window.showSlides(0, '{{ $id }}');
+        }, 10);
+    })();
+</script>

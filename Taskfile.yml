@@ -1,0 +1,8 @@
+version: '3'
+
+tasks:
+  gen:image:
+    desc: Generate manifests
+    cmds:
+      - bash scripts/generate_manifests.sh
+    dir: "{{.ROOT_DIR}}"

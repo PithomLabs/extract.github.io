@@ -1,0 +1,32 @@
+# Hugo build output (do NOT commit)
+.env
+public/
+static/images/
+resources/
+.hugo_build.lock
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+
+# Hugo template downloaded with gut
+
+### Hugo ###
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Temporary lock file while building
+/.hugo_build.lock
+
+.gut

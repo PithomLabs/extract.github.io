@@ -1,0 +1,634 @@
+/* AMP-Style Dark Theme Adaptation for Hextra */
+/* Based on dark mode style from /home/dell/Documents/ibm/go/amp-main */
+
+/* Light Mode Color System - mirror AMP styling but tuned for light backgrounds */
+:root {
+  /* Background Colors - Deep blue-tinted */
+  /* Backgrounds - soft light */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7fbfd;
+  --bg-tertiary: #f1f6f9;
+
+  /* Text Colors */
+  --text-primary: #0b1220;
+  --text-secondary: #5b6b78;
+
+  /* Accent (same cyan) */
+  --accent: #4fc3f7;
+  --accent-hover: #29b6f6;
+  --accent-glow: rgba(79, 195, 247, 0.12);
+
+  /* Border & Dividers */
+  --border: rgba(11, 18, 32, 0.06);
+  --border-hover: rgba(11, 18, 32, 0.12);
+
+  /* Shadows - light mode */
+  --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.04);
+  --shadow-md: 0 6px 18px rgba(11, 18, 32, 0.06);
+  --shadow-lg: 0 16px 40px rgba(11, 18, 32, 0.08);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --panel-bg: #ffffff;
+  --player-bg: rgba(255, 255, 255, 0.95);
+
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(11, 18, 32, 0.12);
+}
+
+/* Dark Mode Color System - AMP Style */
+.dark {
+  /* Background Colors - Deep blue-tinted */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-tertiary: #1a1a28;
+  
+  /* Text Colors - Purple-tinted */
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888a0;
+  
+  /* Accent Colors - Cyan */
+  --accent: #4fc3f7;
+  --accent-hover: #29b6f6;
+  --accent-glow: rgba(79, 195, 247, 0.2);
+  
+  /* Border & Dividers */
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  
+  /* Shadows - Dark mode optimized */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  
+  /* Glass Morphism */
+  --glass-bg: rgba(18, 18, 26, 0.6);
+  --header-bg: rgba(18, 18, 26, 0.8);
+  --panel-bg: #12121a;
+  --player-bg: rgba(18, 18, 26, 0.85);
+  
+  /* Tag Colors */
+  --tag-artist: #2dd4bf;
+  --tag-genre: #a78bfa;
+  --tag-decade: #fbbf24;
+  --tag-custom: #9ca3af;
+  
+  /* Status Colors */
+  --success: #34d399;
+  --danger: #f87171;
+  
+  /* Override Hextra Primary Color to Cyan */
+  --primary-hue: 187deg;
+  --primary-saturation: 90%;
+  --primary-lightness: 57%;
+  
+  /* Scrollbar */
+  --scrollbar-thumb: rgba(255, 255, 255, 0.12);
+  
+  /* Hover Background */
+  --hover-bg: rgba(255, 255, 255, 0.04);
+}
+
+/* Light Mode Body Override */
+body,
+.hx-bg-light {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary);
+}
+
+/* Light Mode Text Override for general elements */
+.hx-text-light {
+  color: var(--text-primary) !important;
+}
+
+/* Light-mode: do not override backgrounds; only adjust font colors where needed */
+
+/* Cards - only set svg/icon colors for light mode; keep background behavior unchanged */
+.hextra-card svg {
+  color: var(--accent);
+}
+
+.hextra-card:hover svg {
+  color: var(--accent-hover);
+}
+
+/* Search inputs: only adjust text color and placeholder (no background overrides) */
+.search-input {
+  color: var(--text-primary);
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Scrollbar (light) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 3px;
+}
+
+/* Links (light) */
+a {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Code blocks / inline code (light) - only adjust inline code color to accent */
+code:not(.hextra-code-block code) {
+  color: var(--accent);
+}
+
+/* TOC (light) - only adjust link colors */
+.toc a {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.toc a:hover {
+  color: var(--accent);
+}
+
+/* Active/Selected TOC Link (light) */
+.toc a:target,
+.hextra-toc a:target,
+.toc a[data-active="true"],
+.toc li.active > a,
+.hextra-toc a[data-active="true"],
+.hextra-toc li.active > a {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure main content retains dark text in light mode */
+.content,
+.content p,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Light-mode Back to Top and Theme Toggle: force light backgrounds and dark text */
+.back-to-top {
+  background: var(--glass-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--accent) !important;
+}
+
+.back-to-top:hover {
+  background: var(--bg-tertiary) !important;
+  box-shadow: 0 0 12px var(--accent-glow) !important;
+}
+
+.theme-toggle {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.theme-toggle:hover {
+  color: var(--accent) !important;
+}
+
+/* Sidebar toggle (light) */
+.sidebar-toggle {
+  color: var(--text-primary) !important;
+}
+
+.sidebar-toggle:hover {
+  color: var(--accent) !important;
+}
+
+/* Dark Mode Body Override */
+.dark body,
+.hx-bg-dark {
+  background-color: var(--bg-primary) !important;
+}
+
+/* Dark Mode Text Override */
+.dark {
+  color: var(--text-primary);
+}
+
+/* Glass Morphism - Navbar */
+.dark .nav-container-blur,
+.dark nav.hx-sticky hx-top-0 hx-z-20 {
+  background: var(--header-bg) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Glass Morphism - Sidebar */
+.dark .sidebar-container {
+  background: var(--bg-secondary) !important;
+}
+
+@media (max-width: 767px) {
+  .dark .sidebar-container {
+    background: var(--bg-secondary) !important;
+  }
+}
+
+/* Dark Mode Cards - Glass Effect */
+.dark .hextra-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.dark .hextra-card:hover {
+  background: rgba(26, 26, 40, 0.7);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md), 0 0 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.dark .hextra-card svg {
+  color: var(--accent);
+}
+
+.dark .hextra-card:hover svg {
+  color: var(--accent-hover);
+}
+
+/* Dark Mode Search - Glass Effect */
+.dark .search-wrapper,
+.dark .search-modal {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.dark .search-input {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.dark .search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+.dark .search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Dark Mode Scrollbar */
+.dark ::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 2px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Dark Mode Links */
+.dark a {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.dark a:hover {
+  color: var(--accent-hover);
+}
+
+/* Dark Mode Code Blocks */
+.dark pre,
+.dark code {
+  background: var(--bg-tertiary) !important;
+  border: 1px solid var(--border);
+}
+
+.dark .hextra-code-block {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.dark .hextra-code-block pre {
+  background: transparent !important;
+  border: none;
+}
+
+/* Dark Mode Inline Code */
+.dark code:not(.hextra-code-block code) {
+  background: var(--bg-tertiary) !important;
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+/* Dark Mode Tables */
+.dark table {
+  border-color: var(--border);
+}
+
+.dark th {
+  background: var(--bg-tertiary);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.dark td {
+  border-color: var(--border);
+}
+
+.dark tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Dark Mode Blockquotes */
+.dark blockquote {
+  border-color: var(--accent) !important;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+}
+
+/* Dark Mode Horizontal Rule */
+.dark hr {
+  border-color: var(--border);
+}
+
+/* Dark Mode Buttons */
+.dark .hx-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.dark .hx-btn:hover {
+  background: var(--hover-bg);
+  border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.dark .hx-btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  border-color: transparent;
+  color: #fff;
+}
+
+.dark .hx-btn-primary:hover {
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+/* Dark Mode Footer */
+.dark footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+}
+
+/* Dark Mode TOC (Table of Contents) */
+.dark .toc {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+}
+
+.dark .toc a {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.dark .toc a:hover {
+  color: var(--accent);
+}
+
+/* Active/Selected TOC Link - Matches left sidebar active state */
+.dark .toc a:target,
+.dark .hextra-toc a:target {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* TOC link currently in view (via data attribute or scroll tracking) */
+.dark .toc a[data-active="true"],
+.dark .toc li.active > a,
+.dark .hextra-toc a[data-active="true"],
+.dark .hextra-toc li.active > a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Ensure higher specificity for hextra-toc links to override utility classes */
+.dark .hextra-toc a[data-active="true"] {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Dark Mode Breadcrumbs */
+.dark .breadcrumbs {
+  color: var(--text-secondary);
+}
+
+.dark .breadcrumbs a {
+  color: var(--accent);
+}
+
+/* Dark Mode Pagination */
+.dark .pagination a {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.dark .pagination a:hover {
+  background: var(--hover-bg);
+  border-color: var(--accent);
+}
+
+/* Dark Mode Alerts/Notices */
+.dark .notice {
+  background: var(--bg-tertiary);
+  border-left: 4px solid var(--accent);
+}
+
+.dark .notice-warning {
+  border-left-color: var(--tag-decade);
+}
+
+.dark .notice-error {
+  border-left-color: var(--danger);
+}
+
+.dark .notice-success {
+  border-left-color: var(--success);
+}
+
+/* Dark Mode Steps */
+.dark .steps {
+  counter-reset: step;
+}
+
+.dark .steps > li {
+  border-left: 2px solid var(--border);
+}
+
+.dark .steps > li::before {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+/* Dark Mode Feature Grid */
+.dark .hextra-feature-grid {
+  background: var(--bg-secondary);
+}
+
+/* Dark Mode Badges */
+.dark .hextra-badge {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+/* Dark Mode Code Copy Button */
+.dark .hextra-code-copy-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.dark .hextra-code-copy-btn:hover {
+  background: var(--hover-bg);
+  color: var(--accent);
+}
+
+/* Dark Mode Back to Top */
+.dark .back-to-top {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  color: var(--accent);
+}
+
+.dark .back-to-top:hover {
+  background: var(--bg-tertiary);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Dark Mode Sidebar Toggle */
+.dark .sidebar-toggle {
+  color: var(--text-primary);
+}
+
+.dark .sidebar-toggle:hover {
+  color: var(--accent);
+}
+
+/* Dark Mode Theme Toggle */
+.dark .theme-toggle {
+  color: var(--text-primary);
+}
+
+.dark .theme-toggle:hover {
+  color: var(--accent);
+}
+
+/* Dark Mode Selection */
+.dark ::selection {
+  background: var(--accent-glow);
+  color: var(--text-primary);
+}
+
+/* Dark Mode Focus States */
+.dark :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Dark Mode Placeholder */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Dark Mode Form Elements */
+.dark input,
+.dark textarea,
+.dark select {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-glow);
+}
+
+/* Dark Mode Details/Summary */
+.dark details {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.dark summary {
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.dark summary:hover {
+  color: var(--accent);
+}
+
+/* Dark Mode Mermaid Diagrams */
+.dark .mermaid {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Dark Mode Math/KaTeX */
+.dark .katex {
+  color: var(--text-primary);
+}
+
+/* Dark Mode Giscus Comments */
+.dark .giscus {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+/* Transition for smooth theme switching */
+.dark,
+.dark *,
+.dark *::before,
+.dark *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
