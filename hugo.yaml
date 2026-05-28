@@ -1,6 +1,6 @@
 baseURL: https://ekstract.tech/
 languageCode: en-us
-title: Scraper
+title: Pithom Labs Scraper
 
 module:
   imports:
@@ -47,7 +47,12 @@ params:
     
   navbar:
     displayTitle: true
-    displayBreadcrumbs: true    
+    displayBreadcrumbs: true
+    logo:
+      path: logo.png
+      dark: logo.png
+      width: 32
+      height: 32    
     
   footer:
     displayCopyright: true
