@@ -248,48 +248,13 @@ layout: "hextra-home"
     margin-top: clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  /* ── 4-Pattern matrix ── */
-  .scraper-matrix {
+  /* ── 4-Pattern image ── */
+  .scraper-matrix-img {
+    display: block;
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 0.95rem;
+    height: auto;
     margin-top: 1.5rem;
-  }
-
-  .scraper-matrix th {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary, #6b7280);
-    border-bottom: 2px solid var(--border);
-  }
-
-  .scraper-matrix td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-primary);
-  }
-
-  .scraper-matrix tr:last-child td {
-    border-bottom: none;
-  }
-
-  .scraper-matrix td:first-child {
-    font-weight: 600;
-  }
-
-  .scraper-matrix .check {
-    color: #2dd4bf;
-    font-size: 1.1rem;
-  }
-
-  .scraper-matrix .dash {
-    color: var(--text-secondary, #6b7280);
-    opacity: 0.4;
+    border-radius: 0.75rem;
   }
 
   /* ── Philosophy section ── */
@@ -395,11 +360,6 @@ layout: "hextra-home"
       border-radius: 1.5rem;
     }
 
-    .scraper-matrix th,
-    .scraper-matrix td {
-      padding: 0.6rem 0.65rem;
-      font-size: 0.85rem;
-    }
 
     .scraper-final-cta-links {
       flex-direction: column;
@@ -437,7 +397,7 @@ Explore the Docs <span aria-hidden="true">→</span>
 <!-- ═══════════════════════════════════════════════════════════
      SECTION 2 — CORE MENTAL MODEL + 4-PATTERN MATRIX
      ═══════════════════════════════════════════════════════════ -->
-<div class="hx-mx-auto hx-w-full hx-max-w-4xl hx-px-6 hx-mt-20 hx-mb-24">
+<div class="hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-mt-20 hx-mb-24">
 
 <div class="hx-text-center hx-mb-8">
 <h2 class="scraper-section-heading hx-text-3xl sm:hx-text-4xl hx-font-bold hx-tracking-tight">
@@ -456,44 +416,9 @@ That's it. Every website you'll ever scrape is a variation of this.
 You don't choose a pattern — the scraper figures it out from your clicks.
 </p>
 
-<table class="scraper-matrix">
-<thead>
-<tr>
-<th>Pattern</th>
-<th>List</th>
-<th>Pagination</th>
-<th>Detail Pages</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Simple</td>
-<td><span class="check">✓</span></td>
-<td><span class="dash">—</span></td>
-<td><span class="dash">—</span></td>
-</tr>
-<tr>
-<td>Paginated</td>
-<td><span class="check">✓</span></td>
-<td><span class="check">✓</span></td>
-<td><span class="dash">—</span></td>
-</tr>
-<tr>
-<td>Detail</td>
-<td><span class="check">✓</span></td>
-<td><span class="dash">—</span></td>
-<td><span class="check">✓</span></td>
-</tr>
-<tr>
-<td>Full</td>
-<td><span class="check">✓</span></td>
-<td><span class="check">✓</span></td>
-<td><span class="check">✓</span></td>
-</tr>
-</tbody>
-</table>
-
 </div>
+
+<img class="scraper-matrix-img" src="/images/FOUR_PATTERNS.png" alt="Four scraping patterns: Simple, Paginated, Detail, and Full" />
 
 </div>
 
