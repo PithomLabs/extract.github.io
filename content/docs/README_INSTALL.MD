@@ -1,15 +1,8 @@
 ---
-title: Support
+title: Getting Started
 weight: 1
-cascade:
-  type: docs
 ---
 
-A step-by-step guide for extracting data from any website. No programming required. [**Get Priority Support**](https://ko-fi.com/pithomlabs)
-
----
-
-# Getting Started
 
 Pithom Labs Scraper is a tool that extracts data from websites and saves it in a structured format (like a spreadsheet). It runs entirely on your computer — no account or sign-up required. You just need an internet connection and Google Chrome.
 
@@ -351,3 +344,13 @@ When reaching out, it helps if you can share:
 - Which step you are on
 - What operating system you are using (Windows, Mac, or Linux)
 - Any error message you see in the Command Prompt or Terminal window (you can copy text from there and paste it into your message)
+
+
+# Pithom Labs
+
+All Rights Reserved.
+
+## Copyright
+
+© Pithom Labs
+
