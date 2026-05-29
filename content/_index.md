@@ -418,7 +418,7 @@ You don't choose a pattern — the scraper figures it out from your clicks.
 
 </div>
 
-<img class="scraper-matrix-img" src="/images/FOUR_PATTERNS.png" alt="Four scraping patterns: Simple, Paginated, Detail, and Full" />
+<img class="scraper-matrix-img" src="/FOUR_PATTERNS.png" alt="Four scraping patterns: Simple, Paginated, Detail, and Full" />
 
 </div>
 
