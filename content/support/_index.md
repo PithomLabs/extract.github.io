@@ -342,12 +342,12 @@ chmod +x scraper
 
 If you are stuck on any step or encounter an issue not listed above, we are happy to help.
 
-Visit our support page:
+[Get Priority Support](https://ko-fi.com/pithomlabs)
 
-**https://ekstract.tech/support**
 
 When reaching out, it helps if you can share:
 
 - Which step you are on
 - What operating system you are using (Windows, Mac, or Linux)
+- Provide all the logs from the mission folder
 - Any error message you see in the Command Prompt or Terminal window (you can copy text from there and paste it into your message)
