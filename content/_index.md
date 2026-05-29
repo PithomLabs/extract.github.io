@@ -145,6 +145,29 @@ layout: "hextra-home"
     border-radius: 1.15rem;
   }
 
+  /* Force-center slideshow in fullscreen on the homepage.
+     The hextra-home layout inherits different alignment than docs. */
+  .scraper-demo-frame .slideshow-container.fullscreen {
+    border-radius: 0;
+  }
+
+  .scraper-demo-frame .slideshow-container.fullscreen .slides-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .scraper-demo-frame .slideshow-container.fullscreen .slide {
+    text-align: center;
+    width: 100%;
+  }
+
+  .scraper-demo-frame .slideshow-container.fullscreen .slide img {
+    display: inline-block;
+    margin-inline: auto;
+  }
+
   /* ── Section headings ── */
   .scraper-section-heading {
     color: var(--text-primary);
