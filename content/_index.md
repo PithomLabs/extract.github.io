@@ -9,7 +9,6 @@ layout: "hextra-home"
     position: relative;
     isolation: isolate;
     width: 100%;
-    overflow: hidden;
   }
 
   .scraper-home::before,
@@ -98,14 +97,22 @@ layout: "hextra-home"
   }
 
   /* ── Panels (glassmorphism containers) ── */
-  .scraper-panel,
-  .scraper-demo-frame {
+  .scraper-panel {
     position: relative;
     border: 1px solid var(--border);
     background: var(--glass-bg);
     box-shadow: var(--shadow-lg);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+  }
+
+  .scraper-demo-frame {
+    position: relative;
+    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    box-shadow: var(--shadow-lg);
+    /* No backdrop-filter here: it creates a containing block
+       that traps position:fixed children (the fullscreen slideshow) */
   }
 
   .scraper-panel::after,
@@ -213,26 +220,9 @@ layout: "hextra-home"
     line-height: 1.5;
   }
 
-  /* ── Split layout (terminal + slideshow) ── */
-  .scraper-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    align-items: start;
-  }
-
-  .scraper-split .scraper-terminal {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .scraper-split .scraper-terminal .scraper-terminal-body {
-    flex: 1;
-  }
-
-  .scraper-split .scraper-demo-frame {
-    height: 100%;
+  /* ── Stacked layout spacing ── */
+  .scraper-terminal + .scraper-demo-frame {
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   /* ── 4-Pattern matrix ── */
@@ -362,11 +352,6 @@ layout: "hextra-home"
   }
 
   /* ── Responsive ── */
-  @media (max-width: 840px) {
-    .scraper-split {
-      grid-template-columns: 1fr;
-    }
-  }
 
   @media (max-width: 640px) {
     .scraper-home::after {
@@ -490,7 +475,7 @@ You don't choose a pattern — the scraper figures it out from your clicks.
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════
-     SECTION 3 — TERMINAL + SLIDESHOW (SPLIT LAYOUT)
+     SECTION 3 — TERMINAL + SLIDESHOW
      ═══════════════════════════════════════════════════════════ -->
 <div class="hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-mb-24">
 
@@ -502,8 +487,6 @@ Three commands. That's the whole workflow.
 Discovery is point-and-click. Execution is one command.
 </p>
 </div>
-
-<div class="scraper-split">
 
 <!-- Terminal -->
 <div class="scraper-terminal">
@@ -534,8 +517,6 @@ Save recipes as intent JSON files. Schedule with cron. Build production pipeline
 <!-- Slideshow Demo -->
 <div class="scraper-demo-frame hx-rounded-3xl hx-overflow-hidden">
 {{< slideshow path="images/extract" root="true" >}}
-</div>
-
 </div>
 
 </div>
