@@ -4,6 +4,7 @@ layout: "hextra-home"
 ---
 
 <style>
+  /* ── Design System (preserved) ── */
   .scraper-home {
     position: relative;
     isolation: isolate;
@@ -38,10 +39,11 @@ layout: "hextra-home"
     background: radial-gradient(circle, rgba(45, 212, 191, 0.1), transparent 68%);
   }
 
+  /* ── Hero ── */
   .scraper-hero {
     position: relative;
     padding-top: clamp(4rem, 9vw, 7rem);
-    padding-bottom: clamp(4rem, 8vw, 6.5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
   }
 
   .scraper-hero-title {
@@ -59,7 +61,12 @@ layout: "hextra-home"
     color: transparent;
   }
 
-  .scraper-download-link,
+  .scraper-hero-subtitle {
+    max-width: 38rem;
+    margin-inline: auto;
+    line-height: 1.6;
+  }
+
   .scraper-hero-cta {
     display: inline-flex;
     align-items: center;
@@ -71,22 +78,17 @@ layout: "hextra-home"
     box-shadow: var(--shadow-sm);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-  }
-
-  .scraper-hero-cta {
     padding-block: 1rem;
     padding-inline: clamp(2.5rem, 5vw, 4.5rem);
+    min-height: 3.25rem;
+    transition: all 0.22s ease;
   }
 
-  .scraper-download-link {
-    min-height: 2.75rem;
-  }
-
-  .scraper-download-link:hover,
   .scraper-hero-cta:hover {
     border-color: var(--border-hover);
     color: var(--accent-hover) !important;
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .scraper-cta-row {
@@ -95,12 +97,7 @@ layout: "hextra-home"
     row-gap: 1rem;
   }
 
-  .scraper-primary-cta,
-  .scraper-secondary-cta {
-    min-height: 3.25rem;
-  }
-
-  .scraper-showcase,
+  /* ── Panels (glassmorphism containers) ── */
   .scraper-panel,
   .scraper-demo-frame {
     position: relative;
@@ -111,16 +108,6 @@ layout: "hextra-home"
     -webkit-backdrop-filter: blur(18px);
   }
 
-  .scraper-showcase {
-    padding: 0.55rem;
-  }
-
-  .scraper-showcase img {
-    display: block;
-    border-radius: 1.15rem;
-  }
-
-  .scraper-showcase::after,
   .scraper-panel::after,
   .scraper-demo-frame::after {
     content: "";
@@ -143,23 +130,15 @@ layout: "hextra-home"
     background: linear-gradient(180deg, var(--accent), #2dd4bf);
   }
 
-  .scraper-philosophy-body {
-    max-width: 56rem;
-    margin-inline: auto;
+  .scraper-demo-frame {
+    padding: 0.55rem;
   }
 
-  .scraper-icon {
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
-    width: 3rem;
-    height: 3rem;
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    background: var(--bg-tertiary);
-    box-shadow: var(--shadow-sm);
+  .scraper-demo-frame .slideshow-container {
+    border-radius: 1.15rem;
   }
 
+  /* ── Section headings ── */
   .scraper-section-heading {
     color: var(--text-primary);
     text-wrap: balance;
@@ -170,55 +149,201 @@ layout: "hextra-home"
     margin-inline: auto;
   }
 
-  .scraper-feature-shell {
-    padding: clamp(1rem, 3vw, 1.5rem);
+  /* ── Terminal block ── */
+  .scraper-terminal {
+    position: relative;
     border: 1px solid var(--border);
-    border-radius: 1.75rem;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.2)),
-      var(--glass-bg);
-    box-shadow: var(--shadow-md);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border-radius: 1.25rem;
+    background: #0d1117;
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(79, 195, 247, 0.06);
+    overflow: hidden;
+    font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace;
   }
 
-  .scraper-feature-shell .hextra-feature-grid {
-    background: transparent !important;
+  .scraper-terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  .scraper-feature-shell .hextra-feature-card {
-    min-height: 11rem;
-    border-radius: 1.25rem !important;
-    border-color: var(--border) !important;
-    background: rgba(255, 255, 255, 0.58);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+  .scraper-terminal-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
   }
 
-  .scraper-feature-shell .hextra-feature-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--border-hover) !important;
-    box-shadow: var(--shadow-md), 0 0 24px var(--accent-glow);
+  .scraper-terminal-dot:nth-child(1) { background: #ff5f57; }
+  .scraper-terminal-dot:nth-child(2) { background: #febc2e; }
+  .scraper-terminal-dot:nth-child(3) { background: #28c840; }
+
+  .scraper-terminal-body {
+    padding: 1.5rem 1.5rem 2rem;
+    font-size: 0.9rem;
+    line-height: 2;
+    color: #c9d1d9;
   }
 
-  .scraper-feature-shell .hextra-feature-card h3 {
-    font-size: 1.125rem;
-    line-height: 1.35;
+  .scraper-terminal-body .cmd-prompt {
+    color: #2dd4bf;
+    user-select: none;
+  }
+
+  .scraper-terminal-body .cmd-text {
+    color: #f0f6fc;
+  }
+
+  .scraper-terminal-body .cmd-flag {
+    color: #79c0ff;
+  }
+
+  .scraper-terminal-body .cmd-comment {
+    color: #6e7681;
+    font-style: italic;
+  }
+
+  .scraper-terminal-caption {
+    padding: 1rem 1.5rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 0.8rem;
+    color: #6e7681;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* ── Split layout (terminal + slideshow) ── */
+  .scraper-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+
+  .scraper-split .scraper-terminal {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scraper-split .scraper-terminal .scraper-terminal-body {
+    flex: 1;
+  }
+
+  .scraper-split .scraper-demo-frame {
+    height: 100%;
+  }
+
+  /* ── 4-Pattern matrix ── */
+  .scraper-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 0.95rem;
+    margin-top: 1.5rem;
+  }
+
+  .scraper-matrix th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary, #6b7280);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .scraper-matrix td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
     color: var(--text-primary);
   }
 
-  .scraper-feature-shell .hextra-feature-card p {
-    color: var(--text-secondary) !important;
+  .scraper-matrix tr:last-child td {
+    border-bottom: none;
   }
 
-  .scraper-demo-frame {
-    padding: 0.55rem;
+  .scraper-matrix td:first-child {
+    font-weight: 600;
   }
 
-  .scraper-demo-frame .slideshow-container {
-    border-radius: 1.15rem;
+  .scraper-matrix .check {
+    color: #2dd4bf;
+    font-size: 1.1rem;
   }
 
+  .scraper-matrix .dash {
+    color: var(--text-secondary, #6b7280);
+    opacity: 0.4;
+  }
+
+  /* ── Philosophy section ── */
+  .scraper-philosophy {
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .scraper-philosophy p {
+    line-height: 1.8;
+  }
+
+  /* ── Final CTA ── */
+  .scraper-final-cta {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .scraper-final-cta-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    flex-wrap: wrap;
+  }
+
+  .scraper-final-cta-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: var(--text-primary) !important;
+    transition: color 0.2s ease;
+  }
+
+  .scraper-final-cta-links a:hover {
+    color: var(--accent-hover) !important;
+  }
+
+  /* ── Blockquote override for the mental model ── */
+  .scraper-insight-quote {
+    position: relative;
+    border-left: 3px solid #2dd4bf;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem auto;
+    max-width: 36rem;
+    background: rgba(45, 212, 191, 0.04);
+    border-radius: 0 1rem 1rem 0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+  }
+
+  .scraper-insight-quote strong {
+    color: var(--text-primary);
+  }
+
+  .scraper-insight-footnote {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #6b7280);
+    font-style: italic;
+    margin-top: 0.75rem;
+  }
+
+  /* ── Dark mode overrides ── */
   .dark .scraper-home::before {
     background: radial-gradient(circle, rgba(79, 195, 247, 0.22), transparent 68%);
   }
@@ -227,14 +352,20 @@ layout: "hextra-home"
     background: radial-gradient(circle, rgba(167, 139, 250, 0.13), transparent 68%);
   }
 
-  .dark .scraper-feature-shell {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)),
-      var(--glass-bg);
+  .dark .scraper-terminal {
+    background: #0d1117;
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
-  .dark .scraper-feature-shell .hextra-feature-card {
-    background: rgba(18, 18, 26, 0.74);
+  .dark .scraper-insight-quote {
+    background: rgba(45, 212, 191, 0.06);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 840px) {
+    .scraper-split {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 640px) {
@@ -247,8 +378,7 @@ layout: "hextra-home"
       flex-direction: column;
     }
 
-    .scraper-primary-cta,
-    .scraper-secondary-cta {
+    .scraper-cta-row .scraper-hero-cta {
       width: 100%;
       justify-content: center;
     }
@@ -256,145 +386,195 @@ layout: "hextra-home"
     .scraper-panel {
       border-radius: 1.5rem;
     }
+
+    .scraper-matrix th,
+    .scraper-matrix td {
+      padding: 0.6rem 0.65rem;
+      font-size: 0.85rem;
+    }
+
+    .scraper-final-cta-links {
+      flex-direction: column;
+      gap: 1.25rem;
+    }
   }
 </style>
 
 <div class="scraper-home">
-<!-- Hero Showcase Container -->
-<div class="scraper-hero hx-mx-auto hx-w-full hx-max-w-6xl hx-text-center hx-px-6">
-<a href="https://github.com/PithomLabs/extract.github.io/releases" target="_blank" rel="noopener noreferrer" class="scraper-download-link hx-px-6 hx-py-2 hx-text-sm hx-font-semibold hx-transition-all">
-Download for Windows, Mac and Linux ↗
-</a>
-<!-- Main Title -->
-<h1 class="scraper-hero-title hx-mt-8 hx-text-4xl hx-font-extrabold hx-leading-tight hx-tracking-tight sm:hx-text-6xl">
-<span>Reclaim your hours.</span>
-<span class="scraper-title-accent">Build point-and-click web scrapers     in seconds.</span>
-</h1>
-<!-- Call to Actions -->
-<div class="scraper-cta-row hx-mt-10 hx-flex hx-items-center hx-justify-center">
-<a href="https://ko-fi.com/pithomlabs" target="_blank" rel="noopener noreferrer" class="scraper-hero-cta scraper-primary-cta hx-text-base hx-font-semibold hx-text-center hx-transition-all">
-Buy Support Plan ↗
-</a>
 
-<a href="/docs" class="scraper-hero-cta scraper-secondary-cta hx-text-base hx-font-semibold hx-leading-6 hx-transition-all">
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 1 — HERO
+     ═══════════════════════════════════════════════════════════ -->
+<div class="scraper-hero hx-mx-auto hx-w-full hx-max-w-6xl hx-text-center hx-px-6">
+
+<h1 class="scraper-hero-title hx-text-4xl hx-font-extrabold hx-leading-tight hx-tracking-tight sm:hx-text-6xl">
+<span class="scraper-title-accent">Point. Click. Extract.</span>
+</h1>
+
+<p class="scraper-hero-subtitle hx-mt-6 hx-text-lg hx-text-slate-600 dark:hx-text-neutral-400">
+Build web scrapers in minutes. No code. No cloud. Just your machine.
+</p>
+
+<div class="scraper-cta-row hx-mt-10 hx-flex hx-items-center hx-justify-center">
+<a href="https://github.com/PithomLabs/extract.github.io/releases" target="_blank" rel="noopener noreferrer" class="scraper-hero-cta hx-text-base hx-font-semibold hx-text-center">
+Download for Windows, Mac & Linux ↗
+</a>
+<a href="/docs" class="scraper-hero-cta hx-text-base hx-font-semibold hx-text-center">
 Explore the Docs <span aria-hidden="true">→</span>
 </a>
 </div>
-<!-- Hero Showcase Graphic (Support Plan Banner & Virtues) -->
-<div class="scraper-showcase hx-mt-14 hx-mx-auto hx-w-full hx-max-w-4xl hx-rounded-3xl hx-overflow-hidden hover:hx-scale-[1.01] hx-transition-all hx-duration-300">
-<a href="https://ko-fi.com/pithomlabs" target="_blank" rel="noopener noreferrer" class="hx-block">
-<img src="/support_plan_banner.png" alt="Scraper Support Plan - Click Visual Selector, Active Maintenance, Developer Bypasses" class="hx-w-full hx-h-auto" />
-</a>
+
 </div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 2 — CORE MENTAL MODEL + 4-PATTERN MATRIX
+     ═══════════════════════════════════════════════════════════ -->
+<div class="hx-mx-auto hx-w-full hx-max-w-4xl hx-px-6 hx-mt-20 hx-mb-24">
+
+<div class="hx-text-center hx-mb-8">
+<h2 class="scraper-section-heading hx-text-3xl sm:hx-text-4xl hx-font-bold hx-tracking-tight">
+Every website follows one pattern.
+</h2>
 </div>
-<!-- Philosophy section (Native Hextra Card with automatic light/dark glassmorphism and hover cyan glows) -->
-<div class="scraper-panel hextra-card hx-mx-auto hx-w-full hx-max-w-6xl hx-rounded-3xl hx-p-8 sm:hx-p-10 hx-mb-24 hx-px-8">
-<div class="hx-flex hx-items-center hx-gap-4 hx-mb-6">
-<span class="scraper-icon hx-text-3xl">💡</span>
-<h2 class="scraper-section-heading hx-text-2xl sm:hx-text-3xl hx-font-bold hx-tracking-tight">Our Philosophy: Local-First and No-Pressure</h2>
+
+<div class="scraper-panel hextra-card hx-rounded-3xl hx-p-8 sm:hx-p-10">
+
+<div class="scraper-insight-quote">
+<strong>Find a list → handle pages → get details.</strong><br />
+That's it. Every website you'll ever scrape is a variation of this.
 </div>
-<div class="scraper-philosophy-body hx-space-y-4 hx-text-slate-600 dark:hx-text-neutral-300 hx-leading-relaxed hx-text-base sm:hx-text-lg">
-<p>
-We believe that your data belongs to you. That's why the <strong>Point-and-Click Scraper</strong> runs entirely on your local machine. It doesn't upload your data to our servers, require expensive API keys, or lock you into monthly subscription traps. It's completely free to try our scraper program using the command <code>scraper ui</code> and build your scraping flows.
+
+<p class="scraper-insight-footnote hx-text-center">
+You don't choose a pattern — the scraper figures it out from your clicks.
 </p>
-<p>
-<strong>But we also know that scraping is hard.</strong> Websites change layouts, put up anti-bot protections, or require complex session management. When you're using web scraping for your business, a broken scraper is not just an inconvenience—it's lost revenue.
-</p>
-<p class="hx-font-medium hx-text-slate-950 dark:hx-text-white">
-That is where our <strong>Support Plan</strong> comes in.
-</p>
-<p>
-By buying our Support Plan via Ko-Fi, you get direct access to our core engineers. We will write custom scraping configs (intents) for your target sites, help troubleshoot anti-bot bypasses, and ensure your data pipelines remain rock-solid.
-</p>
-<p class="hx-pt-4 hx-font-semibold hx-text-primary-600 dark:hx-text-primary-400">
-No sales calls, no subscription contracts. Just expert backup when you need it most.
-</p>
+
+<table class="scraper-matrix">
+<thead>
+<tr>
+<th>Pattern</th>
+<th>List</th>
+<th>Pagination</th>
+<th>Detail Pages</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td><span class="check">✓</span></td>
+<td><span class="dash">—</span></td>
+<td><span class="dash">—</span></td>
+</tr>
+<tr>
+<td>Paginated</td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="dash">—</span></td>
+</tr>
+<tr>
+<td>Detail</td>
+<td><span class="check">✓</span></td>
+<td><span class="dash">—</span></td>
+<td><span class="check">✓</span></td>
+</tr>
+<tr>
+<td>Full</td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span></td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<!-- Big Center Button to buy Support Plan -->
-<div class="hx-mt-9 hx-text-center">
-<a href="https://ko-fi.com/pithomlabs" target="_blank" rel="noopener noreferrer" class="scraper-primary-cta hx-btn hx-btn-primary hx-rounded-full hx-px-10 hx-py-5 hx-text-lg hx-font-extrabold hx-text-center hx-inline-flex hx-items-center hx-justify-center">
-Get Expert Support via Ko-Fi ↗
-</a>
-<p class="hx-mt-4 hx-text-xs hx-text-slate-500 dark:hx-text-neutral-500">
-Opens in a new browser tab. A one-off support contribution or a monthly backup—you choose.
-</p>
+
 </div>
-</div>
-<!-- Features Section (Virtues of Point-and-Click Scraping) -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 3 — TERMINAL + SLIDESHOW (SPLIT LAYOUT)
+     ═══════════════════════════════════════════════════════════ -->
 <div class="hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-mb-24">
-<div class="hx-text-center hx-mb-12">
+
+<div class="hx-text-center hx-mb-10">
 <h2 class="scraper-section-heading hx-text-3xl sm:hx-text-4xl hx-font-bold hx-tracking-tight">
-Built for Speed. Designed for Simplicity.
+Three commands. That's the whole workflow.
 </h2>
 <p class="scraper-section-copy hx-mt-4 hx-text-lg hx-text-slate-600 dark:hx-text-neutral-400">
-Say goodbye to brittle scraping.
+Discovery is point-and-click. Execution is one command.
 </p>
 </div>
-<div class="scraper-feature-shell">
-<div class="hextra-feature-grid hx-grid sm:max-lg:hx-grid-cols-2 max-sm:hx-grid-cols-1 hx-gap-4 hx-w-full not-prose" style="--hextra-feature-grid-cols: 3;">
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>🖱️ Point-and-Click Selection</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Click any text, image, or link on a page. Map your fields instantly in an intuitive visual overlay.</p>
+
+<div class="scraper-split">
+
+<!-- Terminal -->
+<div class="scraper-terminal">
+<div class="scraper-terminal-bar">
+<span class="scraper-terminal-dot"></span>
+<span class="scraper-terminal-dot"></span>
+<span class="scraper-terminal-dot"></span>
 </div>
-</article>
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>🔄 Smart Auto-Pagination</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Handles 'Next' buttons, infinite scroll, numbered page links, and URL sequence patterns seamlessly.</p>
+<div class="scraper-terminal-body">
+<div>
+<span class="cmd-prompt">$ </span><span class="cmd-text">scraper </span><span class="cmd-flag">ui</span>
+<span class="cmd-comment"> # Launch Mission Control</span>
 </div>
-</article>
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>🧠 Omni-Agent Suggester</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Heuristic selector engine finds the most resilient selectors automatically so your scraper doesn't break.</p>
+<div>
+<span class="cmd-prompt">$ </span><span class="cmd-text">scraper </span><span class="cmd-flag">scrape</span>
+<span class="cmd-comment"> # Run your saved recipe</span>
 </div>
-</article>
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>⚡ Local-First Security</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Runs entirely on your machine. Complete privacy, full network speed, and zero reliance on third-party cloud APIs.</p>
-</div>
-</article>
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>📂 Spreadsheet-Ready Exports</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Instantly export clean, structured CSV files (perfect for Excel or Sheets) and developer-friendly JSON.</p>
-</div>
-</article>
-<article class="hextra-feature-card not-prose hx-block hx-relative hx-overflow-hidden hx-rounded-3xl hx-border hx-border-gray-200 dark:hx-border-neutral-800">
-<div class="hx-relative hx-w-full hx-p-6">
-<h3 class="hx-text-2xl hx-font-medium hx-leading-6 hx-mb-2 hx-flex hx-items-center">
-<span>🤖 Developer-Friendly Automation</span>
-</h3>
-<p class="hx-text-gray-500 dark:hx-text-gray-400 hx-text-sm hx-leading-6">Save scraping flows as simple 'intent' JSON files. Run them from your command line or automate with cron.</p>
-</div>
-</article>
+<div>
+<span class="cmd-prompt">$ </span><span class="cmd-text">scraper scrape </span><span class="cmd-flag">-headed</span>
+<span class="cmd-comment"> # Watch it work</span>
 </div>
 </div>
+<div class="scraper-terminal-caption">
+Save recipes as intent JSON files. Schedule with cron. Build production pipelines.
 </div>
-<!-- Interactive Slideshow Demo -->
-<div class="hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-pb-24">
-<div class="hx-text-center hx-mb-12">
-<h2 class="scraper-section-heading hx-text-3xl sm:hx-text-4xl hx-font-bold hx-tracking-tight">
-Try It: From URL to CSV in no time!
-</h2>
-<p class="scraper-section-copy hx-mt-4 hx-text-lg hx-text-slate-600 dark:hx-text-neutral-400">
-Take a virtual walkthrough below of mapping lists, pagination, and detail data.
-</p>
 </div>
+
+<!-- Slideshow Demo -->
 <div class="scraper-demo-frame hx-rounded-3xl hx-overflow-hidden">
 {{< slideshow path="images/extract" root="true" >}}
 </div>
+
 </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 4 — LOCAL-FIRST PHILOSOPHY (DISTILLED)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-mb-20">
+
+<div class="scraper-philosophy">
+<h2 class="scraper-section-heading hx-text-3xl sm:hx-text-4xl hx-font-bold hx-tracking-tight hx-mb-6">
+Local-First. No Lock-in.
+</h2>
+<p class="hx-text-lg hx-text-slate-600 dark:hx-text-neutral-400">
+Runs entirely on your machine. No accounts, no cloud dependency, no API lock-in.<br />
+Your data stays yours. Always.
+</p>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SECTION 5 — FINAL CTA
+     ═══════════════════════════════════════════════════════════ -->
+<div class="scraper-final-cta hx-mx-auto hx-w-full hx-max-w-6xl hx-px-6 hx-pb-16">
+
+<div class="scraper-final-cta-links hx-mb-4">
+<a href="https://ko-fi.com/pithomlabs" target="_blank" rel="noopener noreferrer" class="hx-text-lg">
+Get Expert Support ↗
+</a>
+<a href="/docs" class="hx-text-lg">
+Read the Full Docs <span aria-hidden="true">→</span>
+</a>
+</div>
+
+<p class="hx-text-sm hx-text-slate-500 dark:hx-text-neutral-500">
+One-off help or ongoing engineering backup — your choice.
+</p>
+
+</div>
+
 </div>
