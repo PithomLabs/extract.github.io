@@ -46,7 +46,7 @@ If your target site requires authentication and your scraper stops with **Exit C
 ```bash
 scraper discover -refresh
 ```
-*Note: Make sure to run this command from within the specific mission folder, or pass the same `-data-dir`, `-intent-file`, and `-session-file` paths you used originally. This launches a visible browser, lets you manually log in or solve captchas, and saves fresh cookies directly into `session.json`.* (For more details, see the [Login and Session Guide](Login_and_Session_Guide.md)).
+*Note: Make sure to run this command from within the specific mission folder, or pass the same `-data-dir`, `-intent-file`, and `-session-file` paths you used originally. This launches a visible browser, lets you manually log in or solve captchas, and saves fresh cookies directly into `session.json`.* (For more details, see the Login and Session Guide)
 
 ### 6. Validate an Edited intent.json
 If you manually edit your CSS selectors or adjust page limits inside `intent.json` and want to verify the JSON structure without executing a live scrape:
@@ -63,7 +63,7 @@ If your scrape stopped on page 50 due to a network interruption or temporary blo
 ```bash
 scraper scrape -resume-from-page 49
 ```
-*This skips the first 49 successfully scraped pages and begins extracting directly from Page 50.* (For more details, see the [Pagination Guide](Pagination_Guide.md)).
+*This skips the first 49 successfully scraped pages and begins extracting directly from Page 50.* (For more details, see the Pagination Guide).
 
 ---
 
@@ -76,7 +76,7 @@ When selectors break, you have two primary options:
 | A minor layout update occurred, but you want to preserve your existing intent structure and try to heal the selector automatically. | **Diagnose** | `scraper diagnose -intent intent.json -log <path_to_error_log.jsonl>` |
 | The website has undergone a complete redesign, or you want to start completely fresh with a new field selection. | **Re-Discovery** | `scraper discover -url <url> -intent-file intent.json` |
 
-For more details, see the [Troubleshooting Guide](Troubleshooting_Guide.md).
+For more details, see the Troubleshooting Guide
 
 ---
 
@@ -84,7 +84,7 @@ For more details, see the [Troubleshooting Guide](Troubleshooting_Guide.md).
 
 - **Running Commands outside the Project Directory:** The scraper relies on local configurations. Always navigate to your scraper directory (`cd C:\Scraper` or `cd ~/Scraper`) before running commands, or pass the exact absolute paths using `-data-dir`.
 - **Confusing `scraper discover` with `scraper scrape`:** `discover` is an interactive browser tool meant to build recipes. `scrape` is the headless, automated runner meant to execute them. Do not run `discover` in cron or background automated scripts.
-- **Forgetting to check logs.txt:** If a command exits with an error code, do not guess what went wrong. Open `logs.txt` inside your mission directory; `logs.txt` can help you inspect the run history, warnings, and failure context. (See the [Output and Files Guide](Output_and_Files_Guide.md)).
+- **Forgetting to check logs.txt:** If a command exits with an error code, do not guess what went wrong. Open `logs.txt` inside your mission directory; `logs.txt` can help you inspect the run history, warnings, and failure context. (See the Output and Files Guide).
 
 ## Troubleshooting Checklist
 

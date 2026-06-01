@@ -66,10 +66,10 @@ Use this simple logic tree to locate the correct guide or decide if paid support
 **A:** Excel is likely opening the file in a non-UTF-8 encoding. The scraper's CSV writer includes a UTF-8 BOM to help Excel recognize non-ASCII characters correctly. Try importing the CSV using **Data** → **From Text/CSV** and select **UTF-8** as the file origin.
 
 #### Q4: What does Exit Code 3 mean?
-**A:** Exit Code 3 usually means the scraper could not confirm the expected page structure, often because of structural drift, missing selectors, skeleton loading, or hydration timing. See the [Troubleshooting Guide](Troubleshooting_Guide.md).
+**A:** Exit Code 3 usually means the scraper could not confirm the expected page structure, often because of structural drift, missing selectors, skeleton loading, or hydration timing. See the Troubleshooting Guide.
 
 #### Q5: What does Exit Code 42 mean?
-**A:** This is the scraper's standard auth required signal. It means your login session has expired or the site is blocking access, requiring a cookie refresh. See the [Login and Session Guide](Login_and_Session_Guide.md).
+**A:** This is the scraper's standard auth required signal. It means your login session has expired or the site is blocking access, requiring a cookie refresh. See the Login and Session Guide.
 
 #### Q6: How do I refresh an expired login session?
 **A:** Navigate to your mission folder and run `scraper discover -refresh`. Log into the site in the visible window, and the scraper will save fresh cookies to `session.json` without destroying your selectors.
