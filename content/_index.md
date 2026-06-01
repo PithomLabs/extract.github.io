@@ -387,7 +387,7 @@ Build web scrapers in minutes. No code. No cloud. Just your machine.
 <a href="https://github.com/PithomLabs/extract.github.io/releases" target="_blank" rel="noopener noreferrer" class="scraper-hero-cta hx-text-base hx-font-semibold hx-text-center">
 Download for Windows, Mac & Linux ↗
 </a>
-<a href="https://ko-fi.com/pithomlabs" class="scraper-hero-cta hx-text-base hx-font-semibold hx-text-center">
+<a href="https://ko-fi.com/pithomlabs" target="_blank" class="scraper-hero-cta hx-text-base hx-font-semibold hx-text-center">
 Get Expert Support <span aria-hidden="true">→</span>
 </a>
 </div>
